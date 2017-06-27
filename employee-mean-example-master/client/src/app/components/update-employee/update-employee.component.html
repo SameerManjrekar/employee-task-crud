@@ -1,0 +1,132 @@
+<div class="page-header text-center">
+  <strong>Employee Update Form</strong>
+</div>
+
+<div class="row show-hide-message">
+  <div [ngClass]="messageClass">
+    {{ message }}
+  </div>
+</div>
+
+<form [formGroup]="updateEmployeemployeeForm" (submit)="onEmployeeUpdateSubmit()">
+  <div *ngIf="employee">
+    <div class="form-group">
+      <label for="firstname">First Name</label>
+      <div [ngClass]="{ 'has-error': (updateEmployeemployeeForm.get('firstname').errors && updateEmployeemployeeForm.get('firstname').dirty)}">
+        <input type="text" name="firstname" formControlName="firstname" class="form-control" placeholder="First Name" [value]="employee !== null ? employee.firstname : null">
+        <ul class="help-block">
+          <li *ngIf="updateEmployeemployeeForm.get('firstname').errors?.required && updateEmployeemployeeForm.get('firstname').dirty">
+            First Name is required
+          </li>
+          <li *ngIf="updateEmployeemployeeForm.get('firstname').errors?.validateFirstname && updateEmployeemployeeForm.get('firstname').dirty">
+            First name should not contain any special characters
+          </li>
+          <li *ngIf="(updateEmployeemployeeForm.get('firstname').errors?.minlength || 
+            updateEmployeemployeeForm.get('firstname').errors?.maxlength) && updateEmployeemployeeForm.get('firstname').dirty">
+            Minimum length: 3, Maxlength: 20
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="lastname">Last Name</label>
+      <div [ngClass]="{ 'has-error': (updateEmployeemployeeForm.get('lastname').errors && updateEmployeemployeeForm.get('lastname').dirty)}">
+        <input type="text" name="lastname" formControlName="lastname" class="form-control" placeholder="Last Name" [value]="employee !== null ? employee.lastname : null">
+        <ul class="help-block">
+          <li *ngIf="updateEmployeemployeeForm.get('lastname').errors?.required && updateEmployeemployeeForm.get('lastname').dirty">
+            Last Name is required
+          </li>
+          <li *ngIf="updateEmployeemployeeForm.get('lastname').errors?.validateLastname && updateEmployeemployeeForm.get('lastname').dirty">
+            Last name should not contain any special characters
+          </li>
+          <li *ngIf="(updateEmployeemployeeForm.get('lastname').errors?.minlength || 
+            updateEmployeemployeeForm.get('lastname').errors?.maxlength) && updateEmployeemployeeForm.get('lastname').dirty">
+            Minimum length: 3, Maxlength: 20
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password</label>
+      <div [ngClass]="{ 'has-error': (updateEmployeemployeeForm.get('password').errors && updateEmployeemployeeForm.get('password').dirty)}">
+        <input type="password" name="password" formControlName="password" class="form-control" placeholder="Password" [value]="employee !== null ? employee.password : null">
+        <ul class="help-block">
+          <li *ngIf="updateEmployeemployeeForm.get('password').errors?.required && updateEmployeemployeeForm.get('password').dirty">
+            Password is required
+          </li>
+          <li *ngIf="(updateEmployeemployeeForm.get('password').errors?.minlength || 
+            updateEmployeemployeeForm.get('password').errors?.maxlength) && updateEmployeemployeeForm.get('password').dirty">
+            Minimum length: 3, Maxlength: 20
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="dob">DOB</label>
+      <div [ngClass]="{ 'has-error': (updateEmployeemployeeForm.get('dob').errors && updateEmployeemployeeForm.get('dob').dirty)}">
+        <input type="date" name="dob" formControlName="dob" class="form-control" placeholder="dob" [value]="employee.dob | date:'yyyy-MM-dd'">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="city">City</label>
+      <div [ngClass]="{ 'has-error': (updateEmployeemployeeForm.get('city').errors && updateEmployeemployeeForm.get('city').dirty)}">
+        <input type="text" name="city" formControlName="city" class="form-control" placeholder="City" [value]="employee !== null ? employee.city : null">
+        <ul class="help-block">
+          <li *ngIf="updateEmployeemployeeForm.get('city').errors?.required && updateEmployeemployeeForm.get('city').dirty">
+            City is required
+          </li>
+          <li *ngIf="updateEmployeemployeeForm.get('city').errors?.validateCity && updateEmployeemployeeForm.get('city').dirty">
+            City should not contain any special characters
+          </li>
+          <li *ngIf="(updateEmployeemployeeForm.get('city').errors?.minlength || 
+            updateEmployeemployeeForm.get('city').errors?.maxlength) && updateEmployeemployeeForm.get('city').dirty">
+            Minimum length: 3, Maxlength: 30
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="userType">User Type</label>
+      <div [ngClass]="{ 'has-error': (updateEmployeemployeeForm.get('userType').errors && updateEmployeemployeeForm.get('userType').dirty)}">
+        <div class="form-inline">
+          <label class="radio">
+              <input name="userType" formControlName="userType" [checked]="employee.userType === 'SuperAdmin'" value="SuperAdmin" type="radio">SuperAdmin
+          </label>
+          <label class="radio">
+              <input name="userType" formControlName="userType" [checked]="employee.userType === 'CityAdmin'" value="CityAdmin" type="radio">CityAdmin
+          </label>
+          <label class="radio">
+              <input name="userType" formControlName="userType" [checked]="employee.userType === 'Customer'" value="Customer" type="radio">Customer
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="userStatus">User Status</label>
+      <div [ngClass]="{ 'has-error': (updateEmployeemployeeForm.get('userStatus').errors && updateEmployeemployeeForm.get('userStatus').dirty)}">
+        <div class="form-inline">
+          <label class="radio">
+              <input name="userStatus" [checked]="employee.userStatus === 'Active'" value="Active" formControlName="userStatus" type="radio">Active
+          </label>
+          <label class="radio">
+              <input name="userStatus" [checked]="employee.userStatus === 'InActive'" value="InActive" formControlName="userStatus" type="radio">InActive
+          </label>
+          <label class="radio">
+              <input name="userStatus" [checked]="employee.userStatus === 'Archive'" value="Archive" formControlName="userStatus" type="radio">Archive
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <input type="submit" [disabled]="!updateEmployeemployeeForm.dirty" class="btn btn-primary" value="Update Employee">
+
+  <input type="submit" class="btn btn-default" value="Back" (click)="goBack()">
+
+</form>

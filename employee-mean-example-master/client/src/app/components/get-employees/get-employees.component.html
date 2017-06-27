@@ -1,0 +1,43 @@
+<div class="page-header text-center">
+  <strong>Employee CRUD</strong>
+</div>
+
+<div class="row show-hide-message">
+  <div [ngClass]="messageClass">
+    {{ message }}
+  </div>
+</div>
+
+<div class="container">
+  <a routerLink="/addemployee" class="btn btn-primary"><strong>Add Employee</strong></a>
+</div>
+<br><br>
+<div>
+  <div *ngIf="employees" class="table-bordered table-responsive text-center">
+    <table class="table table-bordered" style="border: 1px solid: #ddd !important;">
+      <thead>
+        <th>Username</th>
+        <th>EmailId</th>
+        <th>City</th>
+        <th>DOB</th>
+        <th>User Type</th>
+        <th>Action</th>
+      </thead>
+      <tbody *ngFor="let employee of employees">
+        <tr>
+          <td>{{ employee.firstname + " " + employee.lastname }}</td>
+          <td>{{ employee.email }}</td>
+          <td>{{ employee.city }}</td>
+          <td>{{ employee.dob | date:'yyyy-MM-dd' }}</td>
+          <td>{{ employee.userType }}</td>
+          <td>
+            <span class="glyphicon glyphicon-eye-open" (click)="viewEmployee(employee)" aria-hidden="true">                  
+                </span> |
+            <span class="glyphicon glyphicon-pencil" (click)="updateEmployee(employee)" aria-hidden="true"></span> |
+            <span class="glyphicon glyphicon-trash" (click)="deleteEmployee(employee._id)" aria-hidden="true"></span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

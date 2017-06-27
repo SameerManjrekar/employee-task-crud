@@ -1,0 +1,146 @@
+<div class="page-header">
+  Employee CRUD
+</div>
+
+<div class="row show-hide-message">
+  <div [ngClass]="messageClass">
+    {{ message }}
+  </div>
+</div>
+
+<form [formGroup]="employeeForm" (submit)="onEmployeeSubmit()">
+  <div class="form-group">
+    <label for="firstname">First Name</label>
+    <div [ngClass]="{ 'has-error': (employeeForm.get('firstname').errors && employeeForm.get('firstname').dirty)}">
+      <input type="text" name="firstname" formControlName="firstname" class="form-control" placeholder="First Name">
+      <ul class="help-block">
+        <li *ngIf="employeeForm.get('firstname').errors?.required && employeeForm.get('firstname').dirty">
+          First Name is required
+        </li>
+        <li *ngIf="employeeForm.get('firstname').errors?.validateFirstname && employeeForm.get('firstname').dirty">
+          First name should not contain any special characters
+        </li>
+        <li *ngIf="(employeeForm.get('firstname').errors?.minlength || 
+            employeeForm.get('firstname').errors?.maxlength) && employeeForm.get('firstname').dirty">
+          Minimum length: 3, Maxlength: 20
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="lastname">Last Name</label>
+    <div [ngClass]="{ 'has-error': (employeeForm.get('lastname').errors && employeeForm.get('lastname').dirty)}">
+      <input type="text" name="lastname" formControlName="lastname" class="form-control" placeholder="Last Name">
+      <ul class="help-block">
+        <li *ngIf="employeeForm.get('lastname').errors?.required && employeeForm.get('lastname').dirty">
+          Last Name is required
+        </li>
+        <li *ngIf="employeeForm.get('lastname').errors?.validateLastname && employeeForm.get('lastname').dirty">
+          Last name should not contain any special characters
+        </li>
+        <li *ngIf="(employeeForm.get('lastname').errors?.minlength || 
+            employeeForm.get('lastname').errors?.maxlength) && employeeForm.get('lastname').dirty">
+          Minimum length: 3, Maxlength: 20
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="email">Email</label>
+    <div [ngClass]="{ 'has-error': (employeeForm.get('email').errors && employeeForm.get('email').dirty)}">
+      <input type="text" name="email" formControlName="email" class="form-control" placeholder="Email">
+      <ul class="help-block">
+        <li *ngIf="employeeForm.get('email').errors?.required && employeeForm.get('email').dirty">
+          Email is required
+        </li>
+        <li *ngIf="employeeForm.get('email').errors?.pattern && employeeForm.get('email').dirty">
+          Email should be in proper format
+        </li>
+        <li *ngIf="(employeeForm.get('email').errors?.minlength || 
+            employeeForm.get('email').errors?.maxlength) && employeeForm.get('email').dirty">
+          Minimum length: 10, Maxlength: 40
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="password">Password</label>
+    <div [ngClass]="{ 'has-error': (employeeForm.get('password').errors && employeeForm.get('password').dirty)}">
+      <input type="password" name="password" formControlName="password" class="form-control" placeholder="Password">
+      <ul class="help-block">
+        <li *ngIf="employeeForm.get('password').errors?.required && employeeForm.get('password').dirty">
+          Password is required
+        </li>
+        <li *ngIf="(employeeForm.get('password').errors?.minlength || 
+            employeeForm.get('password').errors?.maxlength) && employeeForm.get('password').dirty">
+          Minimum length: 3, Maxlength: 20
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="dob">DOB</label>
+    <div [ngClass]="{ 'has-error': (employeeForm.get('dob').errors && employeeForm.get('dob').dirty)}">
+      <input type="date" class="form-control" name="dob" formControlName="dob" placeholder="yyyy-mm-dd">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="city">City</label>
+    <div [ngClass]="{ 'has-error': (employeeForm.get('city').errors && employeeForm.get('city').dirty)}">
+      <input type="text" name="city" formControlName="city" class="form-control" placeholder="City">
+      <ul class="help-block">
+        <li *ngIf="employeeForm.get('city').errors?.required && employeeForm.get('city').dirty">
+          City is required
+        </li>
+        <li *ngIf="employeeForm.get('city').errors?.validateCity && employeeForm.get('city').dirty">
+          City should not contain any special characters
+        </li>
+        <li *ngIf="(employeeForm.get('city').errors?.minlength || 
+            employeeForm.get('city').errors?.maxlength) && employeeForm.get('city').dirty">
+          Minimum length: 3, Maxlength: 30
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="userType">User Type</label>
+    <div [ngClass]="{ 'has-error': (employeeForm.get('userType').errors && employeeForm.get('userType').dirty)}">
+      <div class="form-inline">
+        <label class="radio">
+              <input value="SuperAdmin" name="userType" formControlName="userType" type="radio">SuperAdmin
+          </label>
+        <label class="radio">
+              <input value="CityAdmin" name="userType" formControlName="userType" type="radio">CityAdmin
+          </label>
+        <label class="radio">
+              <input value="Customer" name="userType" formControlName="userType" type="radio">Customer
+          </label>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="userStatus">User Status</label>
+    <div [ngClass]="{ 'has-error': (employeeForm.get('userStatus').errors && employeeForm.get('userStatus').dirty)}">
+      <div class="form-inline">
+        <label class="radio">
+              <input value="Active" name="userStatus" formControlName="userStatus" type="radio">Active
+          </label>
+        <label class="radio">
+              <input value="InActive" name="userStatus" formControlName="userStatus" type="radio">InActive
+          </label>
+        <label class="radio">
+              <input value="Archive" name="userStatus" formControlName="userStatus" type="radio">Archive
+          </label>
+      </div>
+    </div>
+  </div>
+
+  <input type="submit" [disabled]="!employeeForm.valid" class="btn btn-primary" value="Add Employee">
+</form>

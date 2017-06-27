@@ -1,0 +1,33 @@
+{
+  "name": "employee-crud-task",
+  "version": "1.0.0",
+  "description": "This is a Task for CRUD Employee",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SameerManjrekar/employee-mean-example.git"
+  },
+  "keywords": [
+    "Test",
+    "Example",
+    "for",
+    "MEAN",
+    "Stack"
+  ],
+  "author": "Sameer Manjrekar",
+  "license": "ISC",
+   "dependencies": {
+    "body-parser": "^1.17.2",
+    "cors": "^2.8.3",
+    "express": "^4.15.3",
+    "mongoose": "^4.10.8",
+    "morgan": "^1.8.2"
+  },
+  "bugs": {
+    "url": "https://github.com/SameerManjrekar/employee-mean-example/issues"
+  },
+  "homepage": "https://github.com/SameerManjrekar/employee-mean-example#readme"
+}

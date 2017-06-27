@@ -1,0 +1,29 @@
+<div class="page-header text-center">
+  <strong>Employee View</strong>
+</div>
+<div class="table-bordered table-responsive text-center" *ngIf="employee">
+  <table class="table table-bordered" style="border: 1px solid: #ddd !important;">
+    <thead>
+      <th>FirstName</th>
+      <th>LastName</th>
+      <th>Email</th>
+      <th>DOB</th>
+      <th>City</th>
+      <th>User Type</th>
+      <th>User Status</th>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{ employee.firstname }}</td>
+        <td>{{ employee.lastname }}</td>
+        <td>{{ employee.email }}</td>
+        <td>{{ employee.dob | date:'yyyy-MM-dd' }}</td>
+        <td>{{ employee.city }}</td>
+        <td>{{ employee.userType }}</td>
+        <td>{{ employee.userStatus }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <input type="submit" class="btn btn-default" value="Back" (click)="goBack()">
+</div>
