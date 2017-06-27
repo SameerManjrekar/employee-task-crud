@@ -9,10 +9,7 @@ let validEmailChecker = (email) => {
     }
 }
 
-const emailValidators = [{
-    validator: emailLengthChecker,
-    message: 'E-mail must be atleast 5 characters but not more than 30 characters in length'
-}, 
+const emailValidators = [
 {
     validator: validEmailChecker,
     message: 'Must be a valid Email'

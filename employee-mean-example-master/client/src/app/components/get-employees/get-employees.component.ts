@@ -57,11 +57,14 @@ export class GetEmployeesComponent implements OnInit {
           this.processing = false;
         } else {
           this.messageClass = 'alert alert-success';
-          this.message = data.message;
+          this.message = (data.message);
           setTimeout(() => {
+            this.getAllEmployees();
             this.router.navigate(['/']);
-          }, 2000);
-        }
+            this.message = null;
+            this.messageClass = null;
+          }, 3000);          
+        }        
       });
     } else {
       return false;
